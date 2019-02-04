@@ -21,8 +21,10 @@ Here is a list of the code examples you will find in this repository:
 	- How to program the "task cam" to trigger the shutter based on a sensors
 
 	**SD DATA LOGGING EXAMPLES**
-	- How to save some sensor data (temperature, humidity, light) to SD card at regular time intervals
-	- How to save datapoints to SD card only when a specific sensor is triggered (eg. movement sensor)
+	- **set_time_date** how to change the time and date settings of the rtc clock
+	- **get_time_date** how to read time and date from the RTC clock
+	- **log_temperature_humidity_light** How to save some sensor data (temperature, humidity, light) to SD card at regular time intervals
+	- **log_events** How to save datapoints to SD card only when a specific sensor is triggered (eg. movement sensor)
 
 ## HINTS
 	- use a power bank to power your project

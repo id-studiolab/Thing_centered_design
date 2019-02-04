@@ -15,7 +15,7 @@ String dateTimeString="";
 DHT dht(DHTPIN, DHTTYPE);
 
 
-const int lightsensorPin=A0;
+const int lightSensorPin=A0;
 
 float temperature;
 float humidity;
@@ -65,7 +65,7 @@ void saveData(){
 	dataString+=humidity;
 	dataString+=',';
 	dataString+=light;
-	
+
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
   File dataFile = SD.open("datalog.csv", FILE_WRITE);
@@ -86,7 +86,7 @@ void saveData(){
 }
 
 void readLightSensor(){
-	light=analogread(lightsensorPin);
+	light=analogRead(lightSensorPin);
 }
 
 //get temperature and humidity data from the sensor
