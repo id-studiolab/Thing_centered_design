@@ -26,12 +26,18 @@ const int chipSelect = 4;
 
 int ledPin=13;
 
+//Use pin 7 to receive the signal from the module
+#define PIR_MOTION_SENSOR 7
+
+
 void setup(){
   Serial.begin(9600);
   clock.begin();
 	dht.begin();
 	pinMode(chipSelect,OUTPUT);
 	pinMode(13,OUTPUT);
+	pinMode(PIR_MOTION_SENSOR, INPUT);
+
 
 	Serial.print("Initializing SD card...");
 
@@ -45,10 +51,16 @@ void setup(){
 }
 
 void loop(){
-	updateTime();
-	readtemperatureHumidity();
-	saveData();
- 	delay(2000);
+	if(digitalRead(PIR_MOTION_SENSOR)){//if it detects the moving people?
+		updateTime();
+		readtemperatureHumidity();
+		readLightSensor();
+		saveData();
+		delay(2000);
+	}else{
+		//non si muove una foglia
+	}
+	 delay(200);
 }
 
 void saveData(){
@@ -108,15 +120,13 @@ void readtemperatureHumidity(){
 //get the time from the RTC clock
 void updateTime(){
   clock.getTime();
-
 	dateTimeString="";
-
-	dateTimeString+=String(clock.month, DEC);
-	dateTimeString+="/";
 	dateTimeString+=String(clock.dayOfMonth, DEC);
 	dateTimeString+="/";
+	dateTimeString+=String(clock.month, DEC);
+	dateTimeString+="/";
 	dateTimeString+=String(clock.year+2000, DEC);
-	dateTimeString+=" ";
+	dateTimeString+=",";
 	dateTimeString+=String(clock.hour, DEC);
 	dateTimeString+=":";
 	dateTimeString+=String(clock.minute, DEC);

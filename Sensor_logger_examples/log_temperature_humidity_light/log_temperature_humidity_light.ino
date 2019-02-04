@@ -47,6 +47,7 @@ void setup(){
 void loop(){
 	updateTime();
 	readtemperatureHumidity();
+	readLightSensor();
 	saveData();
  	delay(2000);
 }
@@ -108,15 +109,13 @@ void readtemperatureHumidity(){
 //get the time from the RTC clock
 void updateTime(){
   clock.getTime();
-
 	dateTimeString="";
-
-	dateTimeString+=String(clock.month, DEC);
-	dateTimeString+="/";
 	dateTimeString+=String(clock.dayOfMonth, DEC);
 	dateTimeString+="/";
+	dateTimeString+=String(clock.month, DEC);
+	dateTimeString+="/";
 	dateTimeString+=String(clock.year+2000, DEC);
-	dateTimeString+=" ";
+	dateTimeString+=",";
 	dateTimeString+=String(clock.hour, DEC);
 	dateTimeString+=":";
 	dateTimeString+=String(clock.minute, DEC);

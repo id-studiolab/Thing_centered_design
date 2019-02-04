@@ -1,9 +1,9 @@
-/****************************************************************************/  
-//  Function: Set time and get the time from RTC chip(DS1307) and display 
+/****************************************************************************/
+//  Function: Set time and get the time from RTC chip(DS1307) and display
 //        it on the serial monitor.
 //  Hardware: Grove - RTC
 //  Arduino IDE: Arduino-1.0
-//  Author:  FrankieChu   
+//  Author:  FrankieChu
 //  Date:    Jan 19,2013
 //  Version: v1.0
 //  by www.seeedstudio.com
@@ -31,7 +31,7 @@ void setup()
 {
   Serial.begin(9600);
   clock.begin();
-  clock.fillByYMD(2018,2,04);//Jan 19,2013
+  clock.fillByYMD(2018,2,04);//Feb 04,2018
   clock.fillByHMS(11,53,0);//15:28 30"
   clock.fillDayOfWeek(MON);//Saturday
   clock.setTime();//write time to the RTC chip
