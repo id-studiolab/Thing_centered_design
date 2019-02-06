@@ -15,14 +15,15 @@ void setup() {
   camSerial.begin(38400);
   Serial.begin(9600);
   initialiseCamera();
-
   digitalWrite(CAM_PWR, 0);
-
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+	digitalWrite(CAM_PWR, HIGH);
+	initialiseCamera();
   capturePicture();
+	digitalWrite(CAM_PWR, LOW);
   delay(5000);
 }
 
@@ -52,8 +53,7 @@ void initialiseCamera() {
 
 // Capture picture
 void capturePicture() {
-  digitalWrite(CAM_PWR, 1);
-  
+
   // Flush serial
   while (camSerial.available() > 0) {
     camSerial.read();
@@ -77,7 +77,4 @@ void capturePicture() {
   while (camSerial.available() > 0) {
     camSerial.read();
   }
-
-  digitalWrite(CAM_PWR, 0);
-
 }
